@@ -1,7 +1,7 @@
 resource "aws_vpc" "my_vpc" {
   cidr_block = var.vpc_cidr_block
   tags = {
-    Name = var.project
+    name = "my-vpc"
    }
 }
 
@@ -11,7 +11,7 @@ resource "aws_subnet" "public_sub" {
   map_public_ip_on_launch = true
   availability_zone = "ap-south-1a"
   tags = {
-    Name = var.project
+    Name = "pub-subnet"
   }
 }
 
@@ -20,7 +20,7 @@ resource "aws_subnet" "private_sub" {
   cidr_block = var.private_cidr_block
   availability_zone  =  "ap-south-1b"
   tags = {
-    Name = var.project
+    Name = "pri-subnet"
   }
 }
 
@@ -47,7 +47,7 @@ resource "aws_nat_gateway" "my_nat" {
   subnet_id     = aws_subnet.public_sub.id
 
   tags = {
-    Name = var.project
+    Name = "my-igw"
   }
 }
 
@@ -66,12 +66,12 @@ resource "aws_route_table_association" "my_associat" {
 
 
 resource "aws_security_group" "my_security" {
-  name        = "http"
-  description = "Allow http"
+  name        = "all-tcp"
+  description = "Allowed all ports"
   vpc_id      = aws_vpc.my_vpc.id
 
   tags = {
-    Name = "http"
+    Name = "all-tcp"
   }
 }
 
