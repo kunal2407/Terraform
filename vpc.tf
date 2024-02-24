@@ -55,7 +55,7 @@ resource "aws_route_table" "private_route_t" {
     }
 }
 resource "aws_route_table_association" "my_associat" {
-  subnet_id      = aws_subnet.private_sub.id
+  subnet_id      = aws_subnet.private_subnet.id
   route_table_id = aws_route_table.private_route_t.id
 }
 
@@ -63,7 +63,7 @@ resource "aws_route_table_association" "my_associat" {
 resource "aws_instance" "demo_inst" {
   ami           = "ami-0e670eb768a5fc3d4"
   instance_type = "t2.micro"
-  subnet_id     = aws_subnet.public_sub.id
+  subnet_id     = aws_subnet.public_subnet.id
   security_groups = [aws_security_group.my_security.id ]
   tags = {
     Name = "demo-inst"
