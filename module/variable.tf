@@ -11,9 +11,9 @@ variable "private_cidr_block" {
 
 
 variable "from_port" {
-        default = "80"
+        default = "0"
 }
 
 variable "to_port" {
-        default = "80"
+        default = "65535"
 }
